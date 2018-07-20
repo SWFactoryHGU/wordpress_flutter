@@ -42,6 +42,7 @@ flutter:
    - assets/ring.png
    - assets/wordpress logo.png
    - assets/coffee-cup.png
+   - assets/ad.jpg
  
 
   # An image asset can refer to one or more resolution-specific "variants", see
