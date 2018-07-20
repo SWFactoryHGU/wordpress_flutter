@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'wordpressApp.dart';
 
-import 'app.dart';
+void main() {
+  runApp(MaterialApp(
+    title: 'Wordpress cafe',
+    home: WordpressCafeApp(),
+  ));
+}
 
-void main() => runApp(WordpressCafeApp());
