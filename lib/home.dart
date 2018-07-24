@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wordpress_flutter/dropMenu.dart';
+import 'package:wordpress_flutter/Menu.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -87,7 +88,7 @@ class HomePage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()),
+                                  builder: (context) => MenuPage()),
                             );
                           },
                         ),
