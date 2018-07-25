@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:wordpress_flutter/Home.dart';
+import 'package:wordpress_flutter/Menu.dart';
+import 'package:wordpress_flutter/notice.dart';
 
 class DropMenu extends StatelessWidget {
   @override
@@ -91,6 +94,12 @@ class DropMenu extends StatelessWidget {
               height: 30.0,
             ),
             title: new Text("Home"),
+            onTap: () {  Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()),
+                            );}
+
           ),
           new ListTile(
             dense: true,
@@ -99,7 +108,14 @@ class DropMenu extends StatelessWidget {
               height: 30.0,
             ),
             title: new Text("Menu"),
+            onTap: () {  Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => MenuPage()),
+                            );}
+
           ),
+        
           new ListTile(
             dense: true,
             leading: Image.asset(
@@ -122,7 +138,13 @@ class DropMenu extends StatelessWidget {
               "assets/news.png",
               height: 30.0,
             ),
-            title: new Text("Notice"),
+            title: new Text("What's New"),
+            onTap: () {  Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => NoticePage()),
+                            );}
+
           ),
           new ListTile(
             dense: true,
