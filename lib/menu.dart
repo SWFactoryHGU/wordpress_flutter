@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'models/post_model.dart';
 import 'dropMenu.dart';
 
 import 'home.dart';
@@ -14,7 +13,7 @@ class MenuPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          backgroundColor: Color.fromRGBO(0, 0, 0, 1.0),
+          backgroundColor: Colors.black87,
           bottom: TabBar(
             labelColor: Color.fromRGBO(160, 134, 86, 1.0),
             indicatorColor: Color.fromRGBO(160, 134, 86, 1.0),

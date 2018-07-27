@@ -11,10 +11,7 @@ class MenuDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(menu.title),
-        backgroundColor: Colors.black,
-      ),
+      appBar: AppBar(title: Text(menu.title), backgroundColor: Colors.black87),
       body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(20.0),
