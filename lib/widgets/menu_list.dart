@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../models/post_model.dart';
 import '../models/media_model.dart';
+import '../menu_detail.dart';
 
 import 'package:http/http.dart' show get;
 
@@ -21,7 +22,7 @@ class MenuList extends StatefulWidget {
 
 class MenuListState extends State<MenuList> {
   List<PostModel> menus = [];
-  List<String> menusImage = [];
+  List<MediaModel> menusImage = [];
 
   @override
   void initState() {
@@ -45,7 +46,7 @@ class MenuListState extends State<MenuList> {
           MediaModel featureImage =
               MediaModel.fromJson(json.decode(mediaResponse.body));
           setState(() {
-            menusImage.add(featureImage.thumbnail);
+            menusImage.add(featureImage);
             menus.add(menu);
           });
         });
@@ -76,13 +77,24 @@ class MenuListState extends State<MenuList> {
               ),
             ),
             padding: EdgeInsets.all(10.0),
-            child: Row(
-              children: <Widget>[
-                Image.network(menusImage[index], height: 50.0),
-                Expanded(
-                  child: Text(menus[index].title, textAlign: TextAlign.center),
-                ),
-              ],
+            child: GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => MenuDetailPage(
+                          menus[index], menusImage[index].source_url)),
+                );
+              },
+              child: Row(
+                children: <Widget>[
+                  Image.network(menusImage[index].thumbnail, height: 50.0),
+                  Expanded(
+                    child:
+                        Text(menus[index].title, textAlign: TextAlign.center),
+                  ),
+                ],
+              ),
             ),
           );
         });

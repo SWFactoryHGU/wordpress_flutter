@@ -10,6 +10,11 @@ class WordpressCafeApp extends StatelessWidget {
       home: HomePage(),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
+      theme: ThemeData(
+        brightness: Brightness.light,
+        // primarySwatch: Colors.deepOrange,
+        // accentColor: Colors.deepPurple,
+      ),
     );
   }
 
