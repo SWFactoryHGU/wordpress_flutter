@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Wordpress Cafe'),
-        backgroundColor: Color.fromRGBO(28, 26, 33, 1.0),
+        backgroundColor: Colors.black87,
         actions: <Widget>[
           Image.asset(
             "assets/ring.png",
@@ -25,8 +25,8 @@ class HomePage extends StatelessWidget {
           ),
           new Container(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisSize: MainAxisSize.max,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 new Row(
@@ -70,13 +70,13 @@ class HomePage extends StatelessWidget {
                   height: 20.0,
                 ),
                 new Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     new Column(
                       children: <Widget>[
                         new IconButton(
                           padding: const EdgeInsets.only(
                             top: 50.0,
-                            left: 30.0,
                           ),
                           icon: ImageIcon(
                             new AssetImage("assets/coffee.png"),
@@ -93,7 +93,8 @@ class HomePage extends StatelessWidget {
                           },
                         ),
                         new Text(
-                          "      메뉴보기",
+                          "메뉴보기",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Color.fromRGBO(255, 255, 255, 1.0),
                             fontSize: 15.0,
@@ -119,7 +120,6 @@ class HomePage extends StatelessWidget {
                         new IconButton(
                           padding: const EdgeInsets.only(
                             top: 50.0,
-                            left: 30.0,
                           ),
                           icon: ImageIcon(
                             new AssetImage("assets/store.png"),
@@ -136,7 +136,7 @@ class HomePage extends StatelessWidget {
                           },
                         ),
                         new Text(
-                          "      매장찾기",
+                          "매장찾기",
                           style: TextStyle(
                             color: Color.fromRGBO(255, 255, 255, 1.0),
                             fontSize: 15.0,
@@ -156,32 +156,33 @@ class HomePage extends StatelessWidget {
                     top: 10.0,
                     bottom: 15.0,
                   ),
-                    alignment: Alignment.center,
-                    child: new Column(
-                      children: <Widget>[
-                        new Text(
-                          "운영시간",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color.fromRGBO(255, 255, 255, 1.0),
-                            fontSize: 20.0,
-                            fontWeight: FontWeight.bold,
-                          ),
+                  alignment: Alignment.center,
+                  child: new Column(
+                    children: <Widget>[
+                      new Text(
+                        "운영시간",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color.fromRGBO(255, 255, 255, 1.0),
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
                         ),
-                        new Text(
-                          "9:00 - 22:00",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Color.fromRGBO(255, 255, 255, 1.0),
-                            fontSize: 30.0,
-                            fontWeight: FontWeight.w900,
-                          ),
+                      ),
+                      new Text(
+                        "9:00 - 22:00",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color.fromRGBO(255, 255, 255, 1.0),
+                          fontSize: 30.0,
+                          fontWeight: FontWeight.w900,
                         ),
-                      ],
-                    )),
+                      ),
+                    ],
+                  ),
+                ),
                 new Container(
-                  padding: const EdgeInsets.only(
-                    top:20.0,
+                  padding: EdgeInsets.only(
+                    top: 20.0,
                   ),
                   alignment: Alignment.center,
                   height: 74.0,

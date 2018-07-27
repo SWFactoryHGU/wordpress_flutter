@@ -8,6 +8,7 @@ class DropMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return new Drawer(
       child: new ListView(
+        padding: EdgeInsets.all(0.0),
         children: <Widget>[
           new UserAccountsDrawerHeader(
             margin: const EdgeInsets.only(
@@ -88,34 +89,31 @@ class DropMenu extends StatelessWidget {
             ),
           ),
           new ListTile(
-            dense: true,
-            leading: Image.asset(
-              "assets/home.png",
-              height: 30.0,
-            ),
-            title: new Text("Home"),
-            onTap: () {  Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomePage()),
-                            );}
-
-          ),
+              dense: true,
+              leading: Image.asset(
+                "assets/home.png",
+                height: 30.0,
+              ),
+              title: new Text("Home"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomePage()),
+                );
+              }),
           new ListTile(
-            dense: true,
-            leading: Image.asset(
-              "assets/coffee.png",
-              height: 30.0,
-            ),
-            title: new Text("Menu"),
-            onTap: () {  Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => MenuPage()),
-                            );}
-
-          ),
-        
+              dense: true,
+              leading: Image.asset(
+                "assets/coffee.png",
+                height: 30.0,
+              ),
+              title: new Text("Menu"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => MenuPage()),
+                );
+              }),
           new ListTile(
             dense: true,
             leading: Image.asset(
@@ -133,19 +131,18 @@ class DropMenu extends StatelessWidget {
             title: new Text("Coupon"),
           ),
           new ListTile(
-            dense: true,
-            leading: Image.asset(
-              "assets/news.png",
-              height: 30.0,
-            ),
-            title: new Text("What's New"),
-            onTap: () {  Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => NoticePage()),
-                            );}
-
-          ),
+              dense: true,
+              leading: Image.asset(
+                "assets/news.png",
+                height: 30.0,
+              ),
+              title: new Text("What's New"),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NoticePage()),
+                );
+              }),
           new ListTile(
             dense: true,
             leading: Image.asset(
