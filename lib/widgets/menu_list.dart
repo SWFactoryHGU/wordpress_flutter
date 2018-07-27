@@ -12,37 +12,42 @@ class MenuList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: menus.length,
-        itemBuilder: (context, int index) {
-          return Container(
-            decoration: BoxDecoration(
-              border: BorderDirectional(
-                bottom: BorderSide(color: Colors.grey),
+    if (menus.isNotEmpty) {
+      return ListView.builder(
+          itemCount: menus.length,
+          itemBuilder: (context, int index) {
+            return Container(
+              decoration: BoxDecoration(
+                border: BorderDirectional(
+                  bottom: BorderSide(color: Colors.grey),
+                ),
               ),
-            ),
-            padding: EdgeInsets.all(10.0),
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => MenuDetailPage(
-                        menus[index], menusImage[index].source_url),
-                  ),
-                );
-              },
-              child: Row(
-                children: <Widget>[
-                  Image.network(menusImage[index].thumbnail, height: 50.0),
-                  Expanded(
-                    child:
-                        Text(menus[index].title, textAlign: TextAlign.center),
-                  ),
-                ],
+              padding: EdgeInsets.all(10.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MenuDetailPage(
+                          menus[index], menusImage[index].source_url),
+                    ),
+                  );
+                },
+                child: Row(
+                  children: <Widget>[
+                    Image.network(menusImage[index].thumbnail, height: 50.0),
+                    Expanded(
+                      child:
+                          Text(menus[index].title, textAlign: TextAlign.center),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          );
-        });
+            );
+          });
+    }
+    return Center(
+      child: CircularProgressIndicator(),
+    );
   }
 }

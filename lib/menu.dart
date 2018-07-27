@@ -25,7 +25,7 @@ class MenuPageState extends State<MenuPage> {
         'http://dnjemvmfptm1.dothome.co.kr/wp-json/wp/v2/posts?categories=' +
             categoryId.toString());
 
-    final List<PostModel> menuList = [];
+    // final List<PostModel> menuList = [];
     // final List<MediaModel> menuIamgeList = [];
 
     json.decode(response.body).forEach((dynamic menuData) {
@@ -37,15 +37,15 @@ class MenuPageState extends State<MenuPage> {
               MediaModel.fromJson(json.decode(mediaResponse.body));
           setState(() {
             menusImage[menusId].add(featureImage);
-            // menus[menusId].add(menu);
-            menuList.add(menu);
+            menus[menusId].add(menu);
+            // menuList.add(menu);
           });
         });
       }
-      setState(() {
-        menus[menusId] = menuList;
-        //   menusImage[menusId] = menuIamgeList;
-      });
+      // setState(() {
+      //   menus[menusId] = menuList;
+      //   menusImage[menusId] = menuIamgeList;
+      // });
     });
   }
 
