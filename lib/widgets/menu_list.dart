@@ -15,32 +15,49 @@ class MenuList extends StatelessWidget {
       return ListView.builder(
           itemCount: menus.length,
           itemBuilder: (context, int index) {
-            return Container(
-              decoration: BoxDecoration(
-                border: BorderDirectional(
-                  bottom: BorderSide(color: Colors.grey),
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MenuDetailPage(menus[index]),
+                  ),
+                );
+              },
+              child: Container(
+                decoration: BoxDecoration(
+                  border: BorderDirectional(
+                    bottom: BorderSide(color: Colors.grey),
+                  ),
                 ),
-              ),
-              padding: EdgeInsets.all(10.0),
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => MenuDetailPage(menus[index]),
-                    ),
-                  );
-                },
+                padding: EdgeInsets.all(10.0),
                 child: Row(
                   children: <Widget>[
                     Image.network(menus[index].thumbnail, height: 80.0),
                     Expanded(
-                      child: Column(
-                        children: <Widget>[
-                          Text(menus[index].title, textAlign: TextAlign.center),
-                          Text("\$${menus[index].price}",
-                              textAlign: TextAlign.center),
-                        ],
+                      child: Container(
+                        padding: const EdgeInsets.only(left: 20.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Container(
+                              padding: const EdgeInsets.only(bottom: 10.0),
+                              child: Text(
+                                menus[index].title,
+                                // textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 18.0),
+                              ),
+                            ),
+                            Text(
+                              "\$${menus[index].price}",
+                              // textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 15.0,
+                                color: Colors.grey[600],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ],

@@ -16,13 +16,28 @@ class MenuDetailPage extends StatelessWidget {
           padding: EdgeInsets.all(20.0),
           child: Column(
             children: <Widget>[
-              Padding(
-                padding: EdgeInsets.only(bottom: 20.0),
+              Card(
                 child: Image.network(menu.image,
                     width: 500.0, alignment: Alignment.center),
               ),
-              Text("가격 : \$${menu.price}"),
+              Container(
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                child: Text(menu.title,
+                    textAlign: TextAlign.left,
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 26.0)),
+              ),
               Text(menu.info),
+              Container(
+                alignment: Alignment.centerLeft,
+                padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                child: Text(
+                  "\$${menu.price}",
+                  textAlign: TextAlign.left,
+                  style: TextStyle(fontWeight: FontWeight.w600, fontSize: 20.0),
+                ),
+              ),
               // Text(menu.excerpt.substring(3, menu.excerpt.length - 5)),
             ],
           ),
