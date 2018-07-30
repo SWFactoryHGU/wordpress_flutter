@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:wordpress_flutter/dropMenu.dart';
 import 'package:wordpress_flutter/menu.dart';
+import 'package:wordpress_flutter/findStore.dart';
+import 'package:wordpress_flutter/maps.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -125,7 +127,7 @@ class HomePage extends StatelessWidget {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HomePage()),
+                                  builder: (context) => MapPage()),
                             );
                           },
                         ),
@@ -187,6 +189,7 @@ class HomePage extends StatelessWidget {
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       new Text(
                         "콜드블루 커피 신메뉴 출시",
