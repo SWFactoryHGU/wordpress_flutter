@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'Login.dart';
-import 'Home.dart';
+import 'login.dart';
+import 'home.dart';
 
 class WordpressCafeApp extends StatelessWidget {
   @override

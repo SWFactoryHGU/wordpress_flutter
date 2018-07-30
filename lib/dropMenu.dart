@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wordpress_flutter/Home.dart';
-import 'package:wordpress_flutter/Menu.dart';
+import 'package:wordpress_flutter/home.dart';
+import 'package:wordpress_flutter/menu.dart';
 import 'package:wordpress_flutter/notice.dart';
 
 class DropMenu extends StatelessWidget {

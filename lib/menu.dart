@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 
 import 'dropMenu.dart';
-import 'home.dart';
 import 'widgets/menu_list.dart';
-import 'models/post_model.dart';
-import 'models/media_model.dart';
 import 'models/menu_model.dart';
 
 import 'package:http/http.dart' show get;
@@ -18,8 +15,6 @@ class MenuPage extends StatefulWidget {
 }
 
 class MenuPageState extends State<MenuPage> {
-  // var menus = new List<List<PostModel>>.generate(11, (_) => []);
-  // var menusImage = new List<List<MediaModel>>.generate(11, (_) => []);
   var menus = new List<List<MenuModel>>.generate(11, (_) => []);
 
   void fetchMenu(int menusId, int categoryId) async {
@@ -38,8 +33,6 @@ class MenuPageState extends State<MenuPage> {
   @override
   void initState() {
     super.initState();
-    // fetchPost(0, 1);
-    // fetchPost(1, 6);
     fetchMenu(0, 45);
   }
 
@@ -66,10 +59,7 @@ class MenuPageState extends State<MenuPage> {
             IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
+                Navigator.pop(context);
               },
             ),
             Icon(Icons.search),

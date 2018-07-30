@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wordpress_flutter/dropMenu.dart';
-import 'package:wordpress_flutter/Menu.dart';
+import 'package:wordpress_flutter/menu.dart';
 
 class HomePage extends StatelessWidget {
   @override
