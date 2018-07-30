@@ -35,7 +35,15 @@ class MenuPageState extends State<MenuPage> {
     super.initState();
     fetchMenu(0, 44);
     fetchMenu(1, 45);
+    fetchMenu(2, 46);
+    fetchMenu(3, 47);//커피
+    fetchMenu(4, 48);
     fetchMenu(5, 49);
+    fetchMenu(6, 50);
+    fetchMenu(7, 51);//푸드
+    fetchMenu(8, 52);
+    fetchMenu(9, 53);
+    fetchMenu(10, 54);//기타
   }
 
   @override
@@ -90,14 +98,10 @@ class MenuPageState extends State<MenuPage> {
                 ),
                 body: TabBarView(
                   children: [
-                    // Text("신메뉴 리스트가 준비중입니다"),
-                    MenuList(menus[0]), // 임시 카테고리
+                    MenuList(menus[0]),
                     MenuList(menus[1]),
-                    // MenuList(menus[2]),
-                    // MenuList(menus[1], menusImage[1]),
-                    // Text("에스프레소 리스트가 준비중입니다"),
-                    Text("디카페인 리스트가 준비중입니다"),
-                    Text("병음료 리스트가 준비중입니다"),
+                    MenuList(menus[2]),
+                    MenuList(menus[3]),
                   ],
                 ),
               ),
@@ -122,26 +126,10 @@ class MenuPageState extends State<MenuPage> {
                 ),
                 body: TabBarView(
                   children: [
-                    Text("신메뉴 리스트가 준비중입니다"),
+                    MenuList(menus[4]),
                     MenuList(menus[5]),
-                    // Text("베이커리 리스트가 준비중입니다"),
-                    ListView(
-                      children: <Widget>[
-                        ListTile(
-                          leading: Icon(Icons.cake),
-                          title: Text('생크림케이크'),
-                        ),
-                        ListTile(
-                          leading: Icon(Icons.cake),
-                          title: Text('치즈케이크'),
-                        ),
-                        ListTile(
-                          leading: Icon(Icons.cake),
-                          title: Text('초코케이크'),
-                        ),
-                      ],
-                    ),
-                    Text("샌드위치 리스트가 준비중입니다"),
+                    MenuList(menus[6]),
+                    MenuList(menus[7]),
                   ],
                 ),
               ),
@@ -165,24 +153,9 @@ class MenuPageState extends State<MenuPage> {
                 ),
                 body: TabBarView(
                   children: [
-                    ListView(
-                      children: <Widget>[
-                        ListTile(
-                          leading: Icon(Icons.cake),
-                          title: Text('아이스 커피 블렌드 250g'),
-                        ),
-                        ListTile(
-                          leading: Icon(Icons.cake),
-                          title: Text('에스트레소 로스트 250g'),
-                        ),
-                        ListTile(
-                          leading: Icon(Icons.cake),
-                          title: Text('비아 바닐라 라떼 5개입'),
-                        ),
-                      ],
-                    ),
-                    Text("텀블러 리스트가 준비중입니다"),
-                    Text("선물세트 리스트가 준비중입니다"),
+                    MenuList(menus[8]),
+                    MenuList(menus[9]),
+                    MenuList(menus[10]),
                   ],
                 ),
               ),
