@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../models/post_model.dart';
-import '../models/media_model.dart';
+import '../models/menu_model.dart';
+
 import '../menu_detail.dart';
 
 class MenuList extends StatelessWidget {
-  final List<PostModel> menus;
-  final List<MediaModel> menusImage;
+  final List<MenuModel> menus;
 
-  MenuList(this.menus, this.menusImage);
+  MenuList(this.menus);
 
   @override
   Widget build(BuildContext context) {
@@ -28,17 +27,21 @@ class MenuList extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MenuDetailPage(
-                          menus[index], menusImage[index].source_url),
+                      builder: (context) => MenuDetailPage(menus[index]),
                     ),
                   );
                 },
                 child: Row(
                   children: <Widget>[
-                    Image.network(menusImage[index].thumbnail, height: 50.0),
+                    Image.network(menus[index].thumbnail, height: 80.0),
                     Expanded(
-                      child:
+                      child: Column(
+                        children: <Widget>[
                           Text(menus[index].title, textAlign: TextAlign.center),
+                          Text("\$${menus[index].price}",
+                              textAlign: TextAlign.center),
+                        ],
+                      ),
                     ),
                   ],
                 ),

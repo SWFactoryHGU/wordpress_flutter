@@ -6,6 +6,7 @@ import 'home.dart';
 import 'widgets/menu_list.dart';
 import 'models/post_model.dart';
 import 'models/media_model.dart';
+import 'models/menu_model.dart';
 
 import 'package:http/http.dart' show get;
 
@@ -17,43 +18,29 @@ class MenuPage extends StatefulWidget {
 }
 
 class MenuPageState extends State<MenuPage> {
-  var menus = new List<List<PostModel>>.generate(11, (_) => []);
-  var menusImage = new List<List<MediaModel>>.generate(11, (_) => []);
+  // var menus = new List<List<PostModel>>.generate(11, (_) => []);
+  // var menusImage = new List<List<MediaModel>>.generate(11, (_) => []);
+  var menus = new List<List<MenuModel>>.generate(11, (_) => []);
 
-  void fetchPost(int menusId, int categoryId) async {
+  void fetchMenu(int menusId, int categoryId) async {
     final response = await get(
-        'http://dnjemvmfptm1.dothome.co.kr/wp-json/wp/v2/posts?categories=' +
+        'http://dnjemvmfptm1.dothome.co.kr/wp-json/wp/v2/menus?categories=' +
             categoryId.toString());
 
-    // final List<PostModel> menuList = [];
-    // final List<MediaModel> menuIamgeList = [];
-
     json.decode(response.body).forEach((dynamic menuData) {
-      final PostModel menu = PostModel.fromJson(menuData);
-      if (menu.featuredMedia != 0) {
-        get('http://dnjemvmfptm1.dothome.co.kr/wp-json/wp/v2/media/' +
-            menu.featuredMedia.toString()).then((mediaResponse) {
-          MediaModel featureImage =
-              MediaModel.fromJson(json.decode(mediaResponse.body));
-          setState(() {
-            menusImage[menusId].add(featureImage);
-            menus[menusId].add(menu);
-            // menuList.add(menu);
-          });
-        });
-      }
-      // setState(() {
-      //   menus[menusId] = menuList;
-      //   menusImage[menusId] = menuIamgeList;
-      // });
+      final MenuModel menu = MenuModel.fromJson(menuData);
+      setState(() {
+        menus[menusId].add(menu);
+      });
     });
   }
 
   @override
   void initState() {
     super.initState();
-    fetchPost(0, 1);
-    fetchPost(1, 6);
+    // fetchPost(0, 1);
+    // fetchPost(1, 6);
+    fetchMenu(0, 45);
   }
 
   @override
@@ -112,9 +99,9 @@ class MenuPageState extends State<MenuPage> {
                 body: TabBarView(
                   children: [
                     // Text("신메뉴 리스트가 준비중입니다"),
-                    MenuList(menus[0], menusImage[0]), // 임시 카테고리
-                    MenuList(menus[1], menusImage[1]),
-                    // Text("에스프레소 리스트가 준비중입니다"),
+                    MenuList(menus[0]), // 임시 카테고리
+                    // MenuList(menus[1], menusImage[1]),
+                    Text("에스프레소 리스트가 준비중입니다"),
                     Text("디카페인 리스트가 준비중입니다"),
                     Text("병음료 리스트가 준비중입니다"),
                   ],

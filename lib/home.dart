@@ -75,9 +75,6 @@ class HomePage extends StatelessWidget {
                     new Column(
                       children: <Widget>[
                         new IconButton(
-                          padding: const EdgeInsets.only(
-                            top: 50.0,
-                          ),
                           icon: ImageIcon(
                             new AssetImage("assets/coffee.png"),
                             color: Color.fromRGBO(255, 255, 255, 1.0),
@@ -118,9 +115,6 @@ class HomePage extends StatelessWidget {
                     new Column(
                       children: <Widget>[
                         new IconButton(
-                          padding: const EdgeInsets.only(
-                            top: 50.0,
-                          ),
                           icon: ImageIcon(
                             new AssetImage("assets/store.png"),
                             color: Color.fromRGBO(255, 255, 255, 1.0),
@@ -152,10 +146,10 @@ class HomePage extends StatelessWidget {
                   height: 20.0,
                 ),
                 new Container(
-                  padding: const EdgeInsets.only(
-                    top: 10.0,
-                    bottom: 15.0,
-                  ),
+                  // padding: const EdgeInsets.only(
+                  //   top: 10.0,
+                  //   bottom: 15.0,
+                  // ),
                   alignment: Alignment.center,
                   child: new Column(
                     children: <Widget>[
@@ -181,9 +175,6 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 new Container(
-                  padding: EdgeInsets.only(
-                    top: 20.0,
-                  ),
                   alignment: Alignment.center,
                   height: 74.0,
                   decoration: new BoxDecoration(
@@ -195,6 +186,7 @@ class HomePage extends StatelessWidget {
                     ),
                   ),
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       new Text(
                         "콜드블루 커피 신메뉴 출시",
