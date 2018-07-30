@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wordpress_flutter/home.dart';
 import 'package:wordpress_flutter/menu.dart';
 import 'package:wordpress_flutter/notice.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DropMenu extends StatelessWidget {
   @override
@@ -150,6 +151,9 @@ class DropMenu extends StatelessWidget {
               height: 30.0,
             ),
             title: new Text("Alexa order"),
+            onTap: (){
+              _launchURL();
+            }
           ),
           new ListTile(
             dense: true,
@@ -163,4 +167,15 @@ class DropMenu extends StatelessWidget {
       ),
     );
   }
+  
 }
+_launchURL() async {
+  const url = 'http://dnjemvmfptm1.dothome.co.kr';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
+  }
+}
+
+
