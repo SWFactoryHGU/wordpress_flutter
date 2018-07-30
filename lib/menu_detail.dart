@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'models/post_model.dart';
+import 'models/menu_model.dart';
 
 class MenuDetailPage extends StatelessWidget {
-  final PostModel menu;
-  final String menuImage;
+  final MenuModel menu;
 
-  MenuDetailPage(this.menu, this.menuImage);
+  MenuDetailPage(this.menu);
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +18,12 @@ class MenuDetailPage extends StatelessWidget {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.only(bottom: 20.0),
-                child: Image.network(menuImage, alignment: Alignment.center),
+                child: Image.network(menu.image,
+                    width: 500.0, alignment: Alignment.center),
               ),
-              Text(menu.excerpt.substring(3, menu.excerpt.length - 5)),
+              Text("가격 : \$${menu.price}"),
+              Text(menu.info),
+              // Text(menu.excerpt.substring(3, menu.excerpt.length - 5)),
             ],
           ),
         ),

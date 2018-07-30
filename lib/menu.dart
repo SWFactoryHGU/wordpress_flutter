@@ -1,11 +1,41 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
 
 import 'dropMenu.dart';
-
-import 'home.dart';
 import 'widgets/menu_list.dart';
+import 'models/menu_model.dart';
 
-class MenuPage extends StatelessWidget {
+import 'package:http/http.dart' show get;
+
+class MenuPage extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return MenuPageState();
+  }
+}
+
+class MenuPageState extends State<MenuPage> {
+  var menus = new List<List<MenuModel>>.generate(11, (_) => []);
+
+  void fetchMenu(int menusId, int categoryId) async {
+    final response = await get(
+        'http://dnjemvmfptm1.dothome.co.kr/wp-json/wp/v2/menus?categories=' +
+            categoryId.toString());
+
+    json.decode(response.body).forEach((dynamic menuData) {
+      final MenuModel menu = MenuModel.fromJson(menuData);
+      setState(() {
+        menus[menusId].add(menu);
+      });
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    fetchMenu(0, 45);
+  }
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -29,10 +59,7 @@ class MenuPage extends StatelessWidget {
             IconButton(
               icon: Icon(Icons.arrow_back_ios),
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomePage()),
-                );
+                Navigator.pop(context);
               },
             ),
             Icon(Icons.search),
@@ -62,9 +89,9 @@ class MenuPage extends StatelessWidget {
                 body: TabBarView(
                   children: [
                     // Text("신메뉴 리스트가 준비중입니다"),
-                    MenuList(1), // 임시 카테고리
-                    MenuList(6),
-                    // Text("에스프레소 리스트가 준비중입니다"),
+                    MenuList(menus[0]), // 임시 카테고리
+                    // MenuList(menus[1], menusImage[1]),
+                    Text("에스프레소 리스트가 준비중입니다"),
                     Text("디카페인 리스트가 준비중입니다"),
                     Text("병음료 리스트가 준비중입니다"),
                   ],
