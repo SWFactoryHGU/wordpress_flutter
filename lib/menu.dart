@@ -33,7 +33,9 @@ class MenuPageState extends State<MenuPage> {
   @override
   void initState() {
     super.initState();
-    fetchMenu(0, 45);
+    fetchMenu(0, 44);
+    fetchMenu(1, 45);
+    fetchMenu(5, 49);
   }
 
   @override
@@ -55,15 +57,15 @@ class MenuPageState extends State<MenuPage> {
             ],
           ),
           title: Text("전체메뉴"),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.arrow_back_ios),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
-            Icon(Icons.search),
-          ],
+          // actions: <Widget>[
+          //   IconButton(
+          //     icon: Icon(Icons.arrow_back_ios),
+          //     onPressed: () {
+          //       Navigator.pop(context);
+          //     },
+          //   ),
+          //   Icon(Icons.search),
+          // ],
         ),
         drawer: DropMenu(),
         body: TabBarView(
@@ -90,8 +92,10 @@ class MenuPageState extends State<MenuPage> {
                   children: [
                     // Text("신메뉴 리스트가 준비중입니다"),
                     MenuList(menus[0]), // 임시 카테고리
+                    MenuList(menus[1]),
+                    // MenuList(menus[2]),
                     // MenuList(menus[1], menusImage[1]),
-                    Text("에스프레소 리스트가 준비중입니다"),
+                    // Text("에스프레소 리스트가 준비중입니다"),
                     Text("디카페인 리스트가 준비중입니다"),
                     Text("병음료 리스트가 준비중입니다"),
                   ],
@@ -119,7 +123,8 @@ class MenuPageState extends State<MenuPage> {
                 body: TabBarView(
                   children: [
                     Text("신메뉴 리스트가 준비중입니다"),
-                    Text("베이커리 리스트가 준비중입니다"),
+                    MenuList(menus[5]),
+                    // Text("베이커리 리스트가 준비중입니다"),
                     ListView(
                       children: <Widget>[
                         ListTile(
