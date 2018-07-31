@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:wordpress_flutter/home.dart';
 import 'package:wordpress_flutter/menu.dart';
 import 'package:wordpress_flutter/notice.dart';
+import 'package:wordpress_flutter/findStore.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DropMenu extends StatelessWidget {
+  
   @override
   Widget build(BuildContext context) {
     return new Drawer(
@@ -122,6 +124,9 @@ class DropMenu extends StatelessWidget {
               height: 30.0,
             ),
             title: new Text("e-Frequency"),
+            onTap: (){
+              _showAlert(context);
+            },
           ),
           new ListTile(
             dense: true,
@@ -130,6 +135,9 @@ class DropMenu extends StatelessWidget {
               height: 30.0,
             ),
             title: new Text("Coupon"),
+            onTap: (){
+              _showAlert(context);
+            },
           ),
           new ListTile(
               dense: true,
@@ -162,6 +170,13 @@ class DropMenu extends StatelessWidget {
               height: 30.0,
             ),
             title: new Text("Find store"),
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context)=>MapPage()),
+                );
+            }
           ),
         ],
       ),
@@ -169,6 +184,7 @@ class DropMenu extends StatelessWidget {
   }
   
 }
+//connected link
 _launchURL() async {
   const url = 'http://dnjemvmfptm1.dothome.co.kr';
   if (await canLaunch(url)) {
@@ -178,4 +194,19 @@ _launchURL() async {
   }
 }
 
+//alert Dialog
+_showAlert(BuildContext context){
+    AlertDialog dialog = new AlertDialog(
+      content: new Text(
+        "아직 준비 중인 서비스입니다.",
+        style: new TextStyle(fontSize: 15.0,),
+        
+      ),
+      actions: <Widget>[
+        new FlatButton(onPressed:(){ Navigator.pop(context);}, child: new Text('확인'),)
+
+      ],
+    );
+    showDialog(context: context, child: dialog);
+  }
 

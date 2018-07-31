@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wordpress_flutter/dropMenu.dart';
 import 'package:wordpress_flutter/menu.dart';
 import 'package:wordpress_flutter/findStore.dart';
+import 'package:wordpress_flutter/notice.dart';
 import 'package:wordpress_flutter/maps.dart';
 
 class HomePage extends StatelessWidget {
@@ -12,8 +13,18 @@ class HomePage extends StatelessWidget {
         title: const Text('Wordpress Cafe'),
         backgroundColor: Colors.black87,
         actions: <Widget>[
-          Image.asset(
-            "assets/ring.png",
+          new IconButton(
+            icon: ImageIcon(
+              new AssetImage("assets/ring.png"),
+            ),
+            tooltip: '공지',
+            // iconSize: 150.0,
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NoticePage()),
+              );
+            },
           ),
         ],
       ),
