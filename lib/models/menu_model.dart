@@ -15,7 +15,12 @@ class MenuModel {
     title = (parsedJson['title'])['rendered'];
     info = (parsedJson['info']);
     link = parsedJson['link'];
-    price = parsedJson['price'];
+    if (parsedJson['price'].runtimeType == double) {
+      price = parsedJson['price'];
+    } else {
+      int temp = parsedJson['price'];
+      price = temp.floorToDouble();
+    }
     image = parsedJson['image'];
     thumbnail = parsedJson['thumbnail'];
   }
