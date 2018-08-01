@@ -3,7 +3,8 @@ import 'package:wordpress_flutter/dropMenu.dart';
 import 'package:wordpress_flutter/menu.dart';
 import 'package:wordpress_flutter/findStore.dart';
 import 'package:wordpress_flutter/notice.dart';
-import 'package:wordpress_flutter/maps.dart';
+// import 'widgets/notice_list.dart';
+
 
 class HomePage extends StatelessWidget {
   @override
@@ -159,10 +160,7 @@ class HomePage extends StatelessWidget {
                   height: 20.0,
                 ),
                 new Container(
-                  // padding: const EdgeInsets.only(
-                  //   top: 10.0,
-                  //   bottom: 15.0,
-                  // ),
+
                   alignment: Alignment.center,
                   child: new Column(
                     children: <Widget>[

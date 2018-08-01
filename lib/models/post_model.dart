@@ -4,7 +4,7 @@ class PostModel {
   String content;
   String excerpt;
   String link;
-  int featuredMedia;
+  String featuredMedia;
 
   PostModel(this.id, this.title, this.content, this.excerpt, this.link,
       this.featuredMedia);
@@ -15,6 +15,6 @@ class PostModel {
     content = (parsedJson['content'])['rendered'];
     excerpt = (parsedJson['excerpt'])['rendered'];
     link = parsedJson['link'];
-    featuredMedia = parsedJson['featured_media'];
+    featuredMedia = parsedJson["link"];
   }
 }
