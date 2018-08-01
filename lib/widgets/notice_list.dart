@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -18,15 +17,9 @@ class NoticeList extends StatefulWidget {
 class NoticeListState extends State<NoticeList> {
   List<PostModel> notices = [];
 
-  @override
-  void initState() {
-    fetchNotice();
-    super.initState();
-  }
-
   void fetchNotice() async {
     final response = await get(
-        'http://dnjemvmfptm1.dothome.co.kr/wp-json/wp/v2/posts?categories=57');
+        'http://dnjemvmfptm1.dothome.co.kr/wp-json/wp/v2/posts?_embed&categories=57');
 
     json.decode(response.body).forEach((dynamic noticeData) {
       final PostModel notice = PostModel.fromJson(noticeData);
@@ -36,14 +29,12 @@ class NoticeListState extends State<NoticeList> {
     });
   }
 
-  // void fetchMedia(int id) async {
-  //   final mediaResponse = await get(
-  //       'http://dnjemvmfptm1.dothome.co.kr/wp-json/wp/v2/media/' +
-  //           id.toString());
-  //   MediaModel featureImage =
-  //       MediaModel.fromJson(json.decode(mediaResponse.body));
-  //   menusImage.add(featureImage.guid);
-  // }
+  @override
+  void initState() {
+    fetchNotice();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (notices.isNotEmpty) {
@@ -65,28 +56,23 @@ class NoticeListState extends State<NoticeList> {
                     bottom: BorderSide(color: Colors.grey),
                   ),
                 ),
-                padding: EdgeInsets.all(10.0),
-                child: Row(
+                padding: EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
-                    // Image.network(notice[index].thumbnail, height: 80.0),
-                    Padding(
-                      padding: EdgeInsets.only(
-                        top: 10.0,
-                      ),
-                      child: Container(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: <Widget>[
-                            Container(
-                              padding: const EdgeInsets.only(bottom: 10.0),
-                              child: Text("asd",
-                                // notices[index].title,
-                                // textAlign: TextAlign.center,
-                                style: TextStyle(fontSize: 18.0),
-                              ),
-                            ),
-                          ],
+                    Text(
+                      notices[index].title,
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                    Container(
+                      padding: const EdgeInsets.only(top: 10.0),
+                      alignment: Alignment.centerRight,
+                      child: Text(
+                        notices[index].date.toString().substring(0, 10),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 15.0,
+                          color: Colors.grey[600],
                         ),
                       ),
                     ),
