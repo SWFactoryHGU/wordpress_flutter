@@ -19,7 +19,7 @@ class MenuPageState extends State<MenuPage> {
 
   void fetchMenu(int menusId, int categoryId) async {
     final response = await get(
-        'http://dnjemvmfptm1.dothome.co.kr/wp-json/wp/v2/menus?categories=' +
+        'http://dnjemvmfptm1.dothome.co.kr/wp-json/wp/v2/menus?menucategories=' +
             categoryId.toString());
 
     json.decode(response.body).forEach((dynamic menuData) {
@@ -33,17 +33,17 @@ class MenuPageState extends State<MenuPage> {
   @override
   void initState() {
     super.initState();
-    fetchMenu(0, 44);
-    fetchMenu(1, 45);
-    fetchMenu(2, 46);
-    fetchMenu(3, 47);//커피
-    fetchMenu(4, 48);
-    fetchMenu(5, 49);
-    fetchMenu(6, 50);
-    fetchMenu(7, 51);//푸드
-    fetchMenu(8, 52);
-    fetchMenu(9, 53);
-    fetchMenu(10, 54);//기타
+    fetchMenu(0, 68);
+    fetchMenu(1, 69);
+    fetchMenu(2, 70);
+    fetchMenu(3, 71); //커피
+    fetchMenu(4, 72);
+    fetchMenu(5, 73);
+    fetchMenu(6, 74);
+    fetchMenu(7, 75); //푸드
+    fetchMenu(8, 76);
+    fetchMenu(9, 77);
+    fetchMenu(10, 78); //기타
   }
 
   @override

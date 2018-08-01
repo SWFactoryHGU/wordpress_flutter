@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:map_view/map_view.dart';
 import 'package:wordpress_flutter/maps.dart';
 
 class MapPage extends StatelessWidget {
@@ -16,8 +15,8 @@ class MapPage extends StatelessWidget {
         ],
       ),
       body: new Container(
-        padding: EdgeInsets.only(top: 0.0),
-        margin: EdgeInsets.only(top: 0.0),
+        // padding: EdgeInsets.only(top: 0.0),
+        // margin: EdgeInsets.only(top: 0.0),
         child: new Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,11 +27,11 @@ class MapPage extends StatelessWidget {
               children: <Widget>[
                 new Container(
                   alignment: Alignment.center,
-                  height: 270.0,
+                  height: 250.0,
                   decoration: new BoxDecoration(
                     image: new DecorationImage(
                       image: new AssetImage("assets/beans.jpg"),
-                      fit: BoxFit.fitWidth,
+                      fit: BoxFit.fill,
                       colorFilter: ColorFilter.mode(
                           Color.fromRGBO(0, 0, 0, 0.7), BlendMode.darken),
                     ),
@@ -48,7 +47,7 @@ class MapPage extends StatelessWidget {
               children: <Widget>[
                 new Container(),
                 new Text(
-                  "주소 경상북도 포항시 북구 한동로 558\n",
+                  "\n주소 경상북도 포항시 북구 한동로 558\n",
                   style: TextStyle(
                     color: Color.fromRGBO(0, 0, 0, 1.0),
                     fontSize: 13.0,
