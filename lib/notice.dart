@@ -74,27 +74,44 @@ class NoticePage extends StatelessWidget {
         ],
       ),
       drawer: DropMenu(),
-      body: new Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: new Stack(
         children: <Widget>[
-          new Padding(
-            padding: new EdgeInsets.symmetric(vertical: 15.0),
-            child: instance,
-          ),
-          new Text(
-            "워드프레스 카페의 새로운 소식을 볼 수 있는 서비스입니다.",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color.fromRGBO(225, 225, 225, 1.0),
-              fontWeight: FontWeight.bold,
+          new Container(
+            decoration: new BoxDecoration(
+              color: Color.fromRGBO(28, 26, 33, 1.0),
             ),
           ),
-          Divider(height: 20.0),
-          new Container(
-            height: 300.0,
-            child: NoticeList(),
+          new Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              new Container(
+                decoration: new BoxDecoration(
+              color: Color.fromRGBO(28, 26, 33, 1.0),
+            ),
+              ),
+              new Padding(
+                padding: new EdgeInsets.symmetric(vertical: 15.0),
+                child: instance,
+              ),
+              new Text(
+                "워드프레스 카페의 새로운 소식을 볼 수 있는 서비스입니다.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color.fromRGBO(225, 225, 225, 1.0),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Divider(height: 20.0),
+              new Container(
+                decoration: new BoxDecoration(
+                  color: Color.fromRGBO(225, 225, 225, 1.0),
+                ),
+                height: 300.0,
+                child: NoticeList(),
+              ),
+            ],
           ),
         ],
       ),
