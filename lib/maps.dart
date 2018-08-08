@@ -43,7 +43,14 @@ class _LocationInputState extends State<LocationInput> {
       mainAxisAlignment: MainAxisAlignment.start,
       children: <Widget>[
         new Container(
-          height: 250.0,
+          padding: new EdgeInsets.only(bottom: 10.0),
+          child: new Text(
+            "현재위치를 확인하시려면 맵을 클릭하세요.",
+            style: new TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+        new Container(
+          // height: 250.0,
           child: new Stack(
             children: <Widget>[
               new Center(
@@ -66,13 +73,6 @@ class _LocationInputState extends State<LocationInput> {
                 onTap: showMap,
               )
             ],
-          ),
-        ),
-        new Container(
-          padding: new EdgeInsets.only(top: 10.0),
-          child: new Text(
-            "Tap the map to interact",
-            style: new TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
       ],

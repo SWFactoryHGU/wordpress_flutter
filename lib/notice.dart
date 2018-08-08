@@ -58,20 +58,20 @@ class NoticePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('What\'s New'),
         backgroundColor: Colors.black87,
-        actions: <Widget>[
-          new IconButton(
-            icon: ImageIcon(
-              new AssetImage("assets/ring.png"),
-            ),
-            tooltip: '공지',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NoticePage()),
-              );
-            },
-          ),
-        ],
+        // actions: <Widget>[
+        //   new IconButton(
+        //     icon: ImageIcon(
+        //       new AssetImage("assets/ring.png"),
+        //     ),
+        //     tooltip: '공지',
+        //     onPressed: () {
+        //       Navigator.push(
+        //         context,
+        //         MaterialPageRoute(builder: (context) => NoticePage()),
+        //       );
+        //     },
+        //   ),
+        // ],
       ),
       drawer: DropMenu(),
       body: new Stack(
@@ -82,14 +82,14 @@ class NoticePage extends StatelessWidget {
             ),
           ),
           new Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            mainAxisSize: MainAxisSize.max,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
               new Container(
                 decoration: new BoxDecoration(
-              color: Color.fromRGBO(28, 26, 33, 1.0),
-            ),
+                  color: Color.fromRGBO(28, 26, 33, 1.0),
+                ),
               ),
               new Padding(
                 padding: new EdgeInsets.symmetric(vertical: 15.0),
@@ -104,12 +104,13 @@ class NoticePage extends StatelessWidget {
                 ),
               ),
               Divider(height: 20.0),
-              new Container(
-                decoration: new BoxDecoration(
-                  color: Color.fromRGBO(225, 225, 225, 1.0),
+              new Expanded(
+                child: Container(
+                  decoration: new BoxDecoration(
+                    color: Color.fromRGBO(225, 225, 225, 1.0),
+                  ),
+                  child: NoticeList(),
                 ),
-                height: 300.0,
-                child: NoticeList(),
               ),
             ],
           ),

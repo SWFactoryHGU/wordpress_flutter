@@ -8,18 +8,16 @@ class MapPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('매장찾기'),
         backgroundColor: Colors.black87,
-        actions: <Widget>[
-          Image.asset(
-            "assets/ring.png",
-          ),
-        ],
+        // actions: <Widget>[
+        //   Image.asset(
+        //     "assets/ring.png",
+        //   ),
+        // ],
       ),
-      body: new SingleChildScrollView(
-        // padding: EdgeInsets.only(top: 0.0),
-        // margin: EdgeInsets.only(top: 0.0),
+      body: new Container(
         child: new Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: <Widget>[
             new Stack(
@@ -43,33 +41,11 @@ class MapPage extends StatelessWidget {
                 ),
               ],
             ),
-            new Column(
-              children: <Widget>[
-                new Container(),
-                new Text(
-                  "\n주소 경상북도 포항시 북구 한동로 558\n",
-                  style: TextStyle(
-                    color: Color.fromRGBO(0, 0, 0, 1.0),
-                    fontSize: 13.0,
-                  ),
-                ),
-                new Text(
-                  "전화 TEL: 054-123-1234\n",
-                  style: TextStyle(
-                    color: Color.fromRGBO(0, 0, 0, 1.0),
-                    fontSize: 13.0,
-                  ),
-                ),
-                new Text(
-                  "영업 연중무휴(9:00~22:00)\n",
-                  style: TextStyle(
-                    color: Color.fromRGBO(0, 0, 0, 1.0),
-                    fontSize: 13.0,
-                  ),
-                ),
-              ],
+            new Text(
+              '\n주소 경상북도 포항시 북구 한동로 558\n전화 TEL: 054-123-1234\n영업 연중무휴(9:00~22:00)\n',
+              textAlign: TextAlign.center,
             ),
-            new Container(
+            new Expanded(
               child: LocationInput(),
             ),
           ],
