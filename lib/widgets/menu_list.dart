@@ -5,13 +5,16 @@ import '../models/menu_model.dart';
 import '../menu_detail.dart';
 
 class MenuList extends StatelessWidget {
+  //탭 한개에 해당되는 menus 리스트
   final List<MenuModel> menus;
 
+  //생성자로 menu.dart에서 메뉴 데이타 받아옴
   MenuList(this.menus);
 
   @override
   Widget build(BuildContext context) {
     if (menus.isNotEmpty) {
+      // 리스트뷰 위젯. itemCount만큼 itemBilder 반복
       return ListView.builder(
           itemCount: menus.length,
           itemBuilder: (context, int index) {

@@ -14,7 +14,7 @@ class MapPage extends StatelessWidget {
           ),
         ],
       ),
-      body: new Container(
+      body: new SingleChildScrollView(
         // padding: EdgeInsets.only(top: 0.0),
         // margin: EdgeInsets.only(top: 0.0),
         child: new Column(
@@ -75,10 +75,6 @@ class MapPage extends StatelessWidget {
           ],
         ),
       ),
-      // new Container(
-      //   child: LocationInput(),
-      // ),
-      // LocationInput(),
     );
   }
 }
