@@ -40,7 +40,7 @@ class _LocationInputState extends State<LocationInput> {
   @override
   Widget build(BuildContext context) {
     return new Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
         new Container(
           padding: new EdgeInsets.only(bottom: 10.0),
@@ -51,28 +51,11 @@ class _LocationInputState extends State<LocationInput> {
         ),
         new Container(
           // height: 250.0,
-          child: new Stack(
-            children: <Widget>[
-              new Center(
-                  child: new Container(
-                child: new Text(
-                  "You are supposed to see a map here.\n\nAPI Key is not valid.\n\n"
-                      "To view maps in the example application set the "
-                      "API_KEY variable in example/lib/main.dart. "
-                      "\n\nIf you have set an API Key but you still see this text "
-                      "make sure you have enabled all of the correct APIs "
-                      "in the Google API Console. See README for more detail.",
-                  textAlign: TextAlign.center,
-                ),
-                padding: const EdgeInsets.all(20.0),
-              )),
-              new InkWell(
-                child: new Center(
-                  child: new Image.network(staticMapUri.toString()),
-                ),
-                onTap: showMap,
-              )
-            ],
+          child: new InkWell(
+            child: new Center(
+              child: new Image.network(staticMapUri.toString()),
+            ),
+            onTap: showMap,
           ),
         ),
       ],

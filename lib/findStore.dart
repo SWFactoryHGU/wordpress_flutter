@@ -25,7 +25,7 @@ class MapPage extends StatelessWidget {
               children: <Widget>[
                 new Container(
                   alignment: Alignment.center,
-                  height: 250.0,
+                  height: 220.0,
                   decoration: new BoxDecoration(
                     image: new DecorationImage(
                       image: new AssetImage("assets/beans.jpg"),
