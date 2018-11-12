@@ -4,6 +4,6 @@ import 'app.dart';
 
 
 void main() {
-  MapView.setApiKey('AIzaSyBfxmlresQeAP9g1anqjnyc1NQ5vpy8v-U');
+  MapView.setApiKey('AIzaSyB4v8z5oLnWyEFbSbfusEB0jjznBB9NSa8');
   runApp(WordpressCafeApp());
 }

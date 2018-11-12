@@ -15,21 +15,28 @@ class MenuPage extends StatefulWidget {
 }
 
 class MenuPageState extends State<MenuPage> {
+  //각 탭마다 들어갈 11개의 메뉴 리스트 만듬. 빈 리스트로
   var menus = new List<List<MenuModel>>.generate(11, (_) => []);
 
+  //워드프레스에서 메뉴 데이터를 불러옴(menuID -> menus 리스트에 넣어줄 index, categoryId -> 워드프레스에서 불러올 카테고리 ID)
   void fetchMenu(int menusId, int categoryId) async {
+    //워드프레스에서 json파일을 불러와서 response에 저장
     final response = await get(
         'http://dnjemvmfptm1.dothome.co.kr/wp-json/wp/v2/menus?menucategories=' +
             categoryId.toString());
 
+    //response를 json으로 decode하고 각 json 데이터 한개씩(menuData)마다 menus[menusId]에 저장
     json.decode(response.body).forEach((dynamic menuData) {
+      //임시로 추가할 menu 만듬. MenuModel.fromJson은 네임드 생성자.
       final MenuModel menu = MenuModel.fromJson(menuData);
+      //메뉴 리스트에 추가. 메뉴가 추가될때마다 setState하여 MenuPageState을 다시 불러옴
       setState(() {
         menus[menusId].add(menu);
       });
     });
   }
 
+  //처음 MenuPageState에 들어오면 fetchMenu 실행
   @override
   void initState() {
     super.initState();
@@ -98,7 +105,7 @@ class MenuPageState extends State<MenuPage> {
                 ),
                 body: TabBarView(
                   children: [
-                    MenuList(menus[0]),
+                    MenuList(menus[0]), //MenuList 위젯 실행(menu_list.dart에 존재)
                     MenuList(menus[1]),
                     MenuList(menus[2]),
                     MenuList(menus[3]),

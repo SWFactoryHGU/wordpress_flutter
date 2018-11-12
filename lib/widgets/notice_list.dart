@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import '../models/post_model.dart';
-import 'package:wordpress_flutter/home.dart';
+import '../notice_detail.dart';
 
 import 'package:http/http.dart' show get;
 
@@ -46,7 +46,7 @@ class NoticeListState extends State<NoticeList> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => HomePage(),
+                    builder: (context) => NoticeDetailPage(notices[index]),
                   ),
                 );
               },

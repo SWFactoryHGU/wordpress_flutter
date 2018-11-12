@@ -1,61 +1,136 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:map_view/map_view.dart';
-import 'widgets/helpers/ensure_visible.dart';
 
 class LocationInput extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() {
-    return _LocationInputState();
-  }
+  _LocationInputState createState() => new _LocationInputState();
 }
 
 class _LocationInputState extends State<LocationInput> {
-  Uri _staticMapUri;
-  final FocusNode _addressInputFocusNode = FocusNode();
+  MapView mapView = new MapView();
+  CameraPosition cameraPosition;
+  var compositeSubscription = new CompositeSubscription();
+  var staticMapProvider =
+      new StaticMapProvider("AIzaSyB4v8z5oLnWyEFbSbfusEB0jjznBB9NSa8");
+  Uri staticMapUri;
+
+  //Marker bubble
+  List<Marker> _markers = <Marker>[
+    new Marker(
+      "1",
+      "Wordpress Cafe!",
+      36.103079,
+      129.388451,
+    ),
+  ];
 
   @override
-  void initState() {
-    _addressInputFocusNode.addListener(_updateLocation);
-    getStaticMap();
+  initState() {
     super.initState();
-  }
-
-  @override
-  void dispose() {
-    _addressInputFocusNode.removeListener(_updateLocation);
-    super.dispose();
-  }
-
-  void getStaticMap() {
-    final StaticMapProvider staticMapViewProvider = StaticMapProvider("AIzaSyBfxmlresQeAP9g1anqjnyc1NQ5vpy8v-U");
-    final Uri staticMapUri = staticMapViewProvider.getStaticUriWithMarkers(
-        [Marker('position', 'Position', 36.103079, 129.388451)],
+    cameraPosition = new CameraPosition(Location(36.103079, 129.388451), 15.0);
+    staticMapUri = staticMapProvider.getStaticUriWithMarkers(_markers,
         center: Location(36.103079, 129.388451),
-        width: 500,
-        height:  300,
+        width: 900,
+        height: 400,
         maptype: StaticMapViewType.roadmap);
-    setState(() {
-      _staticMapUri = staticMapUri;
-    });
   }
-
-  void _updateLocation() {}
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    return new Column(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: <Widget>[
-        EnsureVisibleWhenFocused(
-          focusNode: _addressInputFocusNode,
-          child: TextFormField(
-            focusNode: _addressInputFocusNode,
+        new Container(
+          padding: new EdgeInsets.only(bottom: 10.0),
+          child: new Text(
+            "현재위치를 확인하시려면 맵을 클릭하세요.",
+            style: new TextStyle(fontWeight: FontWeight.bold),
           ),
         ),
-        SizedBox(
-          height: 10.0,
+        new Container(
+          // height: 250.0,
+          child: new InkWell(
+            child: new Center(
+              child: new Image.network(staticMapUri.toString()),
+            ),
+            onTap: showMap,
+          ),
         ),
-        Image.network(_staticMapUri.toString())
       ],
     );
+  }
+
+  showMap() {
+    mapView.show(
+        new MapOptions(
+            mapViewType: MapViewType.normal,
+            showUserLocation: true,
+            showMyLocationButton: true,
+            showCompassButton: true,
+            initialCameraPosition:
+                new CameraPosition(new Location(36.103079, 129.388451), 16.0),
+            hideToolbar: false,
+            title: "매장 위치"),
+        toolbarActions: [new ToolbarAction("Close", 1)]);
+    StreamSubscription sub = mapView.onMapReady.listen((_) {
+      mapView.setMarkers(_markers);
+    });
+    sub = mapView.onCameraChanged.listen((cameraPosition) =>
+        this.setState(() => this.cameraPosition = cameraPosition));
+    compositeSubscription.add(sub);
+    sub = mapView.onToolbarAction.listen((id) {
+      print("Toolbar button id = $id");
+      if (id == 1) {
+        _handleDismiss();
+      }
+    });
+    compositeSubscription.add(sub);
+  }
+
+  _handleDismiss() async {
+    double zoomLevel = await mapView.zoomLevel;
+    Location centerLocation = await mapView.centerLocation;
+    List<Marker> visibleAnnotations = await mapView.visibleAnnotations;
+    print("Zoom Level: $zoomLevel");
+    print("Center: $centerLocation");
+    print("Visible Annotation Count: ${visibleAnnotations.length}");
+    var uri = await staticMapProvider.getImageUriFromMap(mapView,
+        width: 900, height: 400);
+    setState(() => staticMapUri = uri);
+    mapView.dismiss();
+    compositeSubscription.cancel();
+  }
+}
+
+class CompositeSubscription {
+  Set<StreamSubscription> _subscriptions = new Set();
+
+  void cancel() {
+    for (var n in this._subscriptions) {
+      n.cancel();
+    }
+    this._subscriptions = new Set();
+  }
+
+  void add(StreamSubscription subscription) {
+    this._subscriptions.add(subscription);
+  }
+
+  void addAll(Iterable<StreamSubscription> subs) {
+    _subscriptions.addAll(subs);
+  }
+
+  bool remove(StreamSubscription subscription) {
+    return this._subscriptions.remove(subscription);
+  }
+
+  bool contains(StreamSubscription subscription) {
+    return this._subscriptions.contains(subscription);
+  }
+
+  List<StreamSubscription> toList() {
+    return this._subscriptions.toList();
   }
 }

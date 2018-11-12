@@ -58,43 +58,61 @@ class NoticePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('What\'s New'),
         backgroundColor: Colors.black87,
-        actions: <Widget>[
-          new IconButton(
-            icon: ImageIcon(
-              new AssetImage("assets/ring.png"),
-            ),
-            tooltip: '공지',
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NoticePage()),
-              );
-            },
-          ),
-        ],
+        // actions: <Widget>[
+        //   new IconButton(
+        //     icon: ImageIcon(
+        //       new AssetImage("assets/ring.png"),
+        //     ),
+        //     tooltip: '공지',
+        //     onPressed: () {
+        //       Navigator.push(
+        //         context,
+        //         MaterialPageRoute(builder: (context) => NoticePage()),
+        //       );
+        //     },
+        //   ),
+        // ],
       ),
       drawer: DropMenu(),
-      body: new Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        mainAxisSize: MainAxisSize.max,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: new Stack(
         children: <Widget>[
-          new Padding(
-            padding: new EdgeInsets.symmetric(vertical: 15.0),
-            child: instance,
-          ),
-          new Text(
-            "워드프레스 카페의 새로운 소식을 볼 수 있는 서비스입니다.",
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color.fromRGBO(225, 225, 225, 1.0),
-              fontWeight: FontWeight.bold,
+          new Container(
+            decoration: new BoxDecoration(
+              color: Color.fromRGBO(28, 26, 33, 1.0),
             ),
           ),
-          Divider(height: 20.0),
-          new Container(
-            height: 300.0,
-            child: NoticeList(),
+          new Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              new Container(
+                decoration: new BoxDecoration(
+                  color: Color.fromRGBO(28, 26, 33, 1.0),
+                ),
+              ),
+              new Padding(
+                padding: new EdgeInsets.symmetric(vertical: 15.0),
+                child: instance,
+              ),
+              new Text(
+                "워드프레스 카페의 새로운 소식을 볼 수 있는 서비스입니다.",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color.fromRGBO(225, 225, 225, 1.0),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Divider(height: 20.0),
+              new Expanded(
+                child: Container(
+                  decoration: new BoxDecoration(
+                    color: Color.fromRGBO(225, 225, 225, 1.0),
+                  ),
+                  child: NoticeList(),
+                ),
+              ),
+            ],
           ),
         ],
       ),
