@@ -3,6 +3,7 @@ description: A new Flutter project.
 
 dependency_overrides:
   quiver: ^2.0.0+1
+  http: ^0.12.0
 
 dependencies:
   flutter:
