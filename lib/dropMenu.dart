@@ -4,6 +4,7 @@ import 'package:wordpress_flutter/menu.dart';
 import 'package:wordpress_flutter/notice.dart';
 import 'package:wordpress_flutter/findStore.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:wordpress_flutter/scan.dart';
 
 class DropMenu extends StatelessWidget {
   @override
@@ -125,7 +126,11 @@ class DropMenu extends StatelessWidget {
             ),
             title: new Text("e-Frequency"),
             onTap: () {
-              _showAlert(context);
+              Navigator.pop(context);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ScanPage()),
+                );
             },
           ),
           new ListTile(
@@ -183,6 +188,8 @@ class DropMenu extends StatelessWidget {
       ),
     );
   }
+
+  scanPage() {}
 }
 
 //connected link

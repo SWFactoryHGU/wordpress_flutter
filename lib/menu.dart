@@ -22,7 +22,7 @@ class MenuPageState extends State<MenuPage> {
   void fetchMenu(int menusId, int categoryId) async {
     //워드프레스에서 json파일을 불러와서 response에 저장
     final response = await get(
-        'http://dnjemvmfptm1.dothome.co.kr/wp-json/wp/v2/menus?menucategories=' +
+        'http://wordpresscafe.dothome.co.kr/wp-json/wp/v2/posts?categories=' +
             categoryId.toString());
 
     //response를 json으로 decode하고 각 json 데이터 한개씩(menuData)마다 menus[menusId]에 저장
@@ -40,17 +40,17 @@ class MenuPageState extends State<MenuPage> {
   @override
   void initState() {
     super.initState();
-    fetchMenu(0, 68);
-    fetchMenu(1, 69);
-    fetchMenu(2, 70);
-    fetchMenu(3, 71); //커피
-    fetchMenu(4, 72);
-    fetchMenu(5, 73);
-    fetchMenu(6, 74);
-    fetchMenu(7, 75); //푸드
-    fetchMenu(8, 76);
-    fetchMenu(9, 77);
-    fetchMenu(10, 78); //기타
+    fetchMenu(0, 12);
+    fetchMenu(1, 13);
+    fetchMenu(2, 14);
+    fetchMenu(3, 15); //커피
+    fetchMenu(4, 17);
+    fetchMenu(5, 18);
+    fetchMenu(6, 19);
+    fetchMenu(7, 20); //푸드
+    fetchMenu(8, 22);
+    fetchMenu(9, 23);
+    fetchMenu(10, 24); //기타
   }
 
   @override
@@ -68,7 +68,7 @@ class MenuPageState extends State<MenuPage> {
             tabs: [
               Tab(text: "음료"),
               Tab(text: "푸드"),
-              Tab(text: "원두/기타"),
+              Tab(text: "MD"),
             ],
           ),
           title: Text("전체메뉴"),
@@ -97,9 +97,9 @@ class MenuPageState extends State<MenuPage> {
                     unselectedLabelColor: Color.fromRGBO(255, 255, 255, 1.0),
                     tabs: [
                       Tab(text: "NEW"),
-                      Tab(text: "에스프레소"),
-                      Tab(text: "디카페인"),
-                      Tab(text: "병음료"),
+                      Tab(text: "커피"),
+                      Tab(text: "음료"),
+                      Tab(text: "차"),
                     ],
                   ),
                 ),
@@ -153,8 +153,8 @@ class MenuPageState extends State<MenuPage> {
                     unselectedLabelColor: Color.fromRGBO(255, 255, 255, 1.0),
                     tabs: [
                       Tab(text: "원두커피"),
+                      Tab(text: "머그"),
                       Tab(text: "텀블러"),
-                      Tab(text: "선물세트"),
                     ],
                   ),
                 ),

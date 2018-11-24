@@ -4,6 +4,36 @@ import 'home.dart';
 class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final email = TextFormField(
+      keyboardType: TextInputType.emailAddress,
+      autofocus: false,
+      decoration: InputDecoration(
+        fillColor: Color.fromRGBO(255, 255, 255, 1.0),
+        filled: true,
+        border: InputBorder.none,
+        hintText: 'Email address',
+        hintStyle: new TextStyle(
+          color: Color.fromRGBO(0, 0, 0, 1.0),
+          fontSize: 13.0,
+        ),
+      ),
+    );
+
+    final password = TextFormField(
+      autofocus: false,
+      obscureText: true,
+      decoration: InputDecoration(
+        fillColor: Color.fromRGBO(255, 255, 255, 1.0),
+        filled: true,
+        border: InputBorder.none,
+        hintText: 'Password',
+        hintStyle: new TextStyle(
+          color: Color.fromRGBO(0, 0, 0, 1.0),
+          fontSize: 13.0,
+        ),
+      ),
+    );
+
     return new Scaffold(
       body: new Stack(
         children: <Widget>[
@@ -55,49 +85,53 @@ class LoginPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextField(
-                        decoration: InputDecoration(
-                          fillColor: Color.fromRGBO(255, 255, 255, 1.0),
-                          filled: true,
-                          border: InputBorder.none,
-                          hintText: 'Email address',
-                          hintStyle: new TextStyle(
-                            color: Color.fromRGBO(0, 0, 0, 1.0),
-                            fontSize: 13.0,
-                          ),
-                        ),
-                      ),
-                      Divider(
-                        color: Color.fromRGBO(0, 0, 0, 1.0),
-                        height: 0.0,
-                      ),
-                      TextField(
-                        decoration: InputDecoration(
-                          fillColor: Color.fromRGBO(255, 255, 255, 1.0),
-                          filled: true,
-                          border: InputBorder.none,
-                          hintText: 'Password',
-                          hintStyle: new TextStyle(
-                            color: Color.fromRGBO(0, 0, 0, 1.0),
-                            fontSize: 13.0,
-                          ),
-                        ),
-                      ),
+                      email,
+                      SizedBox(height: 8.0),
+                      password,
+                      SizedBox(height: 24.0),
+                      // TextField(
+                      //   decoration: InputDecoration(
+                      //     fillColor: Color.fromRGBO(255, 255, 255, 1.0),
+                      //     filled: true,
+                      //     border: InputBorder.none,
+                      //     hintText: 'Email address',
+                      //     hintStyle: new TextStyle(
+                      //       color: Color.fromRGBO(0, 0, 0, 1.0),
+                      //       fontSize: 13.0,
+                      //     ),
+                      //   ),
+                      // ),
+                      // Divider(
+                      //   color: Color.fromRGBO(0, 0, 0, 1.0),
+                      //   height: 0.0,
+                      // ),
+                      // TextField(
+                      //   decoration: InputDecoration(
+                      //     fillColor: Color.fromRGBO(255, 255, 255, 1.0),
+                      //     filled: true,
+                      //     border: InputBorder.none,
+                      //     hintText: 'Password',
+                      //     hintStyle: new TextStyle(
+                      //       color: Color.fromRGBO(0, 0, 0, 1.0),
+                      //       fontSize: 13.0,
+                      //     ),
+                      //   ),
+                      // ),
                     ],
                   ),
                 ),
-                Container(
-                  padding: const EdgeInsets.only(
-                    left: 145.0,
-                  ),
-                  child: Text(
-                    'Forgot your password?\n',
-                    style: TextStyle(
-                      color: Color.fromRGBO(255, 255, 255, 1.0),
-                      fontSize: 12.0,
-                    ),
-                  ),
-                ),
+                // Container(
+                //   padding: const EdgeInsets.only(
+                //     left: 145.0,
+                //   ),
+                //   child: Text(
+                //     'Forgot your password?\n',
+                //     style: TextStyle(
+                //       color: Color.fromRGBO(255, 255, 255, 1.0),
+                //       fontSize: 12.0,
+                //     ),
+                //   ),
+                // ),
                 Container(
                   padding: const EdgeInsets.only(
                     left: 35.0,
@@ -123,23 +157,20 @@ class LoginPage extends StatelessWidget {
                     },
                   ),
                 ),
+                // Container(
+                //   padding: const EdgeInsets.only(
+                //     left: 35.0,
+                //   ),
+                //   child: Text(
+                //     'Don\'t have an account?\n',
+                //     style: TextStyle(
+                //       color: Color.fromRGBO(255, 255, 255, 1.0),
+                //       fontSize: 12.0,
+                //     ),
+                //   ),
+                // ),
                 Container(
-                  padding: const EdgeInsets.only(
-                    left: 35.0,
-                  ),
-                  child: Text(
-                    'Don\'t have an account?\n',
-                    style: TextStyle(
-                      color: Color.fromRGBO(255, 255, 255, 1.0),
-                      fontSize: 12.0,
-                    ),
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.only(
-                    bottom: 0.0,
-                    left: 80.0,
-                  ),
+                  alignment: Alignment.center,
                   child: RaisedButton(
                     color: new Color.fromRGBO(245, 58, 51, 0.0),
                     padding: const EdgeInsets.symmetric(
@@ -149,9 +180,10 @@ class LoginPage extends StatelessWidget {
                     // elevation: 40.0,
                     child: new Text(
                       '아니요! 로그인없이 시작할래요!',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Color.fromRGBO(255, 255, 255, 1.0),
-                        fontSize: 12.0,
+                        fontSize: 14.0,
                       ),
                     ),
                     onPressed: () {

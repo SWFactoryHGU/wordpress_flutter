@@ -6,6 +6,7 @@ class WordpressCafeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'HomePage',
       home: HomePage(),
       initialRoute: '/login',

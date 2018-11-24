@@ -22,6 +22,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.8"
+  barcode_scan:
+    dependency: "direct main"
+    description:
+      name: barcode_scan
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.0.7"
   boolean_selector:
     dependency: transitive
     description:
@@ -35,7 +42,7 @@ packages:
       name: cached_network_image
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.2"
+    version: "0.5.1"
   carousel_slider:
     dependency: "direct main"
     description:
@@ -96,21 +103,21 @@ packages:
       name: flutter_cache_manager
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.1.2"
+    version: "0.2.0+1"
   flutter_custom_tabs:
     dependency: transitive
     description:
       name: flutter_custom_tabs
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.3.0"
+    version: "0.4.0"
   flutter_html_view:
     dependency: "direct main"
     description:
       name: flutter_html_view
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.8"
+    version: "0.5.10"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -138,7 +145,7 @@ packages:
     source: hosted
     version: "0.13.3+3"
   http:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: http
       url: "https://pub.dartlang.org"
@@ -285,7 +292,7 @@ packages:
     source: hosted
     version: "1.4.2"
   quiver:
-    dependency: "direct overridden"
+    dependency: transitive
     description:
       name: quiver
       url: "https://pub.dartlang.org"
@@ -407,7 +414,7 @@ packages:
       name: uri
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.11.3"
+    version: "0.11.3+1"
   url_launcher:
     dependency: "direct main"
     description:
@@ -442,7 +449,7 @@ packages:
       name: video_player
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.6.5"
+    version: "0.7.2"
   vm_service_client:
     dependency: transitive
     description:
