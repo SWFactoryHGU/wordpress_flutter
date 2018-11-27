@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:barcode_scan/barcode_scan.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ScanPage extends StatefulWidget {
   @override
@@ -21,17 +22,18 @@ class ScanPageState extends State<ScanPage> {
   Widget build(BuildContext context) {
     return new Scaffold(
       appBar: new AppBar(
-        title: new Text('Barcode Scanner Example'),
+        title: new Text('E-Frequency'),
+        backgroundColor: Colors.black87,
       ),
       body: new Center(
         child: new Column(
           children: <Widget>[
             new Container(
               child:
-                  new MaterialButton(onPressed: scan, child: new Text("Scan")),
+                  new MaterialButton(onPressed: scan, child: new Text("스캔하기")),
               padding: const EdgeInsets.all(8.0),
             ),
-            new Text(barcode),
+            // new Text(barcode),
           ],
         ),
       ),
@@ -42,6 +44,7 @@ class ScanPageState extends State<ScanPage> {
     try {
       String barcode = await BarcodeScanner.scan();
       setState(() => this.barcode = barcode);
+      _launchURL(barcode);
     } on PlatformException catch (e) {
       if (e.code == BarcodeScanner.CameraAccessDenied) {
         setState(() {
@@ -56,5 +59,14 @@ class ScanPageState extends State<ScanPage> {
     } catch (e) {
       setState(() => this.barcode = 'Unknown error: $e');
     }
+  }
+}
+
+_launchURL(url) async {
+  // const url = 'https://flutter.io';
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    throw 'Could not launch $url';
   }
 }

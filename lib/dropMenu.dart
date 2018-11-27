@@ -14,10 +14,7 @@ class DropMenu extends StatelessWidget {
         padding: EdgeInsets.all(0.0),
         children: <Widget>[
           new UserAccountsDrawerHeader(
-            margin: const EdgeInsets.only(
-              top: 0.0,
-              bottom: 0.0,
-            ),
+            margin: const EdgeInsets.all(0),
             decoration: new BoxDecoration(
               color: new Color.fromRGBO(229, 229, 229, 1.0),
             ),
@@ -42,6 +39,12 @@ class DropMenu extends StatelessWidget {
                   backgroundImage: new AssetImage("assets/settings.png"),
                   backgroundColor: new Color.fromRGBO(229, 229, 229, 1.0),
                 ),
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => HomePage()),
+                  );
+                },
               ),
             ],
           ),
@@ -127,10 +130,10 @@ class DropMenu extends StatelessWidget {
             title: new Text("e-Frequency"),
             onTap: () {
               Navigator.pop(context);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ScanPage()),
-                );
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ScanPage()),
+              );
             },
           ),
           new ListTile(
@@ -188,8 +191,6 @@ class DropMenu extends StatelessWidget {
       ),
     );
   }
-
-  scanPage() {}
 }
 
 //connected link
