@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wordpress_flutter/review.dart';
 import 'login.dart';
 import 'home.dart';
 
@@ -24,6 +25,13 @@ class WordpressCafeApp extends StatelessWidget {
       return MaterialPageRoute<void>(
         settings: settings,
         builder: (BuildContext context) => HomePage(),
+        fullscreenDialog: true,
+      );
+    }
+    if (settings.name == '/review') {
+      return MaterialPageRoute<void>(
+        settings: settings,
+        builder: (BuildContext context) => ReviewPage(),
         fullscreenDialog: true,
       );
     }

@@ -143,7 +143,7 @@ class LoginPageState extends State<LoginPage> implements AuthStateListener {
                             fillColor: Color.fromRGBO(255, 255, 255, 1.0),
                             filled: true,
                             border: InputBorder.none,
-                            hintText: 'Email address',
+                            hintText: 'ID or Email',
                             hintStyle: new TextStyle(
                               color: Color.fromRGBO(0, 0, 0, 1.0),
                               fontSize: 13.0,
