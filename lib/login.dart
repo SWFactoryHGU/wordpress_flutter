@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:wordpress_flutter/data/rest_db.dart';
+import 'package:wordpress_flutter/data/rest_ds.dart';
 import 'package:wordpress_flutter/models/user_model.dart';
+import 'package:wordpress_flutter/utils/auth.dart';
 import 'home.dart';
 
 class LoginPage extends StatefulWidget {
@@ -11,51 +12,77 @@ class LoginPage extends StatefulWidget {
   }
 }
 
-class LoginPageState extends State<LoginPage> {
+class LoginPageState extends State<LoginPage> implements AuthStateListener {
+  BuildContext _ctx;
+  bool _isLoading = false;
+
   RestDatasource api = new RestDatasource();
   final formKey = new GlobalKey<FormState>();
   final scaffoldKey = new GlobalKey<ScaffoldState>();
 
-  String _email, _password;
+  String _username, _password;
 
-  final snackBar = SnackBar(
-            content: Text('Yay! A SnackBar!'));
-           
+  LoginPageState() {
+    var authStateProvider = new AuthStateProvider();
+    authStateProvider.subscribe(this);
+  }
+
   void _doLogin() {
-    // new SnackBar(content: new Text("ttt"));
-    scaffoldKey.currentState.showSnackBar(snackBar);
-              // Scaffold.of(context).showSnackBar(snackBar);
-
-    // final form = formKey.currentState;
-    // form.save();
-    // api.login(_email, _password).then((UserModel user) {
-    //   print(user.toString());
-    //   onLoginSuccess(user);
-    // }).catchError((Exception error) => onLoginError(error.toString()));
+    final form = formKey.currentState;
+    if (form.validate()) {
+      setState(() => _isLoading = true);
+      form.save();
+      api.login(_username, _password).then(
+        (UserModel user) {
+          onLoginSuccess(user);
+        },
+      ).catchError((error) {
+        onLoginError(error.message.toString().substring(10));
+      });
+    }
   }
 
   void _showSnackBar(String text) {
-    scaffoldKey.currentState
-        .showSnackBar(new SnackBar(content: new Text(text)));
+    scaffoldKey.currentState.showSnackBar(SnackBar(content: Text(text)));
   }
 
-   void onLoginSuccess(UserModel user) async {
-     scaffoldKey.currentState.showSnackBar(SnackBar(content: new Text("sssss"),));
-    // _showSnackBar(user.toString());
-    // setState(() => _isLoading = false);
-    // var db = new DatabaseHelper();
-    // await db.saveUser(user);
-    // var authStateProvider = new AuthStateProvider();
-    // authStateProvider.notify(AuthState.LOGGED_IN);
+  void onLoginSuccess(UserModel user) {
+    _showSnackBar(user.user_display_name + " login succeed");
+    setState(() => _isLoading = false);
+    var authStateProvider = new AuthStateProvider();
+    authStateProvider.notify(AuthState.LOGGED_IN);
   }
 
   void onLoginError(String errorTxt) {
     _showSnackBar(errorTxt);
-    // setState(() => _isLoading = false);
+    setState(() => _isLoading = false);
+  }
+
+  @override
+  onAuthStateChanged(AuthState state) {
+    if (state == AuthState.LOGGED_IN)
+      Navigator.of(_ctx).pushReplacementNamed('/home');
   }
 
   @override
   Widget build(BuildContext context) {
+    _ctx = context;
+    var loginBtn = RaisedButton(
+      onPressed: _doLogin,
+      color: new Color.fromRGBO(245, 58, 51, 1.0),
+      padding: const EdgeInsets.symmetric(
+        vertical: 10.0,
+        horizontal: 80.0,
+      ),
+      elevation: 40.0,
+      child: new Text(
+        'Log In',
+        style: TextStyle(
+          color: Color.fromRGBO(255, 255, 255, 1.0),
+        ),
+      ),
+    );
+
     return new Scaffold(
       key: scaffoldKey,
       resizeToAvoidBottomPadding: false,
@@ -108,7 +135,7 @@ class LoginPageState extends State<LoginPage> {
                         TextFormField(
                           keyboardType: TextInputType.emailAddress,
                           autofocus: false,
-                          onSaved: (val) => _email = val,
+                          onSaved: (val) => _username = val,
                           decoration: InputDecoration(
                             fillColor: Color.fromRGBO(255, 255, 255, 1.0),
                             filled: true,
@@ -137,28 +164,7 @@ class LoginPageState extends State<LoginPage> {
                           ),
                         ),
                         SizedBox(height: 24.0),
-                        RaisedButton(
-                          color: new Color.fromRGBO(245, 58, 51, 1.0),
-                          padding: const EdgeInsets.symmetric(
-                            vertical: 10.0,
-                            horizontal: 80.0,
-                          ),
-                          elevation: 40.0,
-                          child: new Text(
-                            'Log In',
-                            style: TextStyle(
-                              color: Color.fromRGBO(255, 255, 255, 1.0),
-                            ),
-                          ),
-                          onPressed: _doLogin,
-                          // () {
-
-                          //   Navigator.push(
-                          //     context,
-                          //     MaterialPageRoute(builder: (context) => LoginPage()),
-                          //   );
-                          // },
-                        ),
+                        _isLoading ? new CircularProgressIndicator() : loginBtn
                       ],
                     ),
                   ),

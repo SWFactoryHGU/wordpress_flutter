@@ -14,7 +14,7 @@ class RestDatasource {
       "password": password
     }).then((dynamic res) {
       print(res.toString());
-      // if(res["error"]) throw new Exception(res["error_msg"]);
+      if(res["code"] != null) throw Exception(res["code"]);
       return new UserModel.fromJson(res);
     });
   }

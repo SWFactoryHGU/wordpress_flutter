@@ -20,6 +20,13 @@ class WordpressCafeApp extends StatelessWidget {
   }
 
   Route<dynamic> _getRoute(RouteSettings settings) {
+    if (settings.name == '/home') {
+      return MaterialPageRoute<void>(
+        settings: settings,
+        builder: (BuildContext context) => HomePage(),
+        fullscreenDialog: true,
+      );
+    }
     if (settings.name != '/login') {
       return null;
     }
