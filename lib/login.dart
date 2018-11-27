@@ -22,6 +22,8 @@ class LoginPageState extends State<LoginPage> implements AuthStateListener {
 
   String _username, _password;
 
+  UserModel user;
+
   LoginPageState() {
     var authStateProvider = new AuthStateProvider();
     authStateProvider.subscribe(this);
@@ -50,6 +52,7 @@ class LoginPageState extends State<LoginPage> implements AuthStateListener {
     _showSnackBar(user.user_display_name + " login succeed");
     setState(() => _isLoading = false);
     var authStateProvider = new AuthStateProvider();
+    this.user = user;
     authStateProvider.notify(AuthState.LOGGED_IN);
   }
 
@@ -212,10 +215,7 @@ class LoginPageState extends State<LoginPage> implements AuthStateListener {
                       ),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomePage()),
-                      );
+                      Navigator.of(_ctx).pushReplacementNamed('/home');
                     },
                   ),
                 ),

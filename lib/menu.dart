@@ -40,17 +40,20 @@ class MenuPageState extends State<MenuPage> {
   @override
   void initState() {
     super.initState();
-    fetchMenu(0, 12);
-    fetchMenu(1, 13);
-    fetchMenu(2, 14);
-    fetchMenu(3, 15); //커피
-    fetchMenu(4, 17);
-    fetchMenu(5, 18);
-    fetchMenu(6, 19);
-    fetchMenu(7, 20); //푸드
-    fetchMenu(8, 22);
-    fetchMenu(9, 23);
-    fetchMenu(10, 24); //기타
+    // fetchMenu(0, 12);
+    // fetchMenu(1, 13);
+    // fetchMenu(2, 14);
+    // fetchMenu(3, 15); //커피
+    // fetchMenu(4, 17);
+    // fetchMenu(5, 18);
+    // fetchMenu(6, 19);
+    // fetchMenu(7, 20); //푸드
+    // fetchMenu(8, 22);
+    // fetchMenu(9, 23);
+    // fetchMenu(10, 24); //기타
+    fetchMenu(0, 11);
+    fetchMenu(1, 16);
+    fetchMenu(2, 21);
   }
 
   @override
@@ -59,88 +62,22 @@ class MenuPageState extends State<MenuPage> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          centerTitle: true,
-          backgroundColor: Colors.black87,
-          bottom: TabBar(
-            labelColor: Color.fromRGBO(160, 134, 86, 1.0),
-            indicatorColor: Color.fromRGBO(160, 134, 86, 1.0),
-            unselectedLabelColor: Color.fromRGBO(255, 255, 255, 1.0),
-            tabs: [
-              Tab(text: "음료"),
-              Tab(text: "푸드"),
-              Tab(text: "MD"),
-            ],
-          ),
           title: Text("전체메뉴"),
-          // actions: <Widget>[
-          //   IconButton(
-          //     icon: Icon(Icons.arrow_back_ios),
-          //     onPressed: () {
-          //       Navigator.pop(context);
-          //     },
-          //   ),
-          //   Icon(Icons.search),
-          // ],
+          backgroundColor: Colors.black87,
+          // bottom: TabBar(
+          //   labelColor: Color.fromRGBO(160, 134, 86, 1.0),
+          //   indicatorColor: Color.fromRGBO(160, 134, 86, 1.0),
+          //   unselectedLabelColor: Color.fromRGBO(255, 255, 255, 1.0),
+          //   tabs: [
+          //     Tab(text: "커피"),
+          //     Tab(text: "음료"),
+          //     Tab(text: "디저트"),
+          //   ],
+          // ),
         ),
         drawer: DropMenu(),
         body: TabBarView(
           children: [
-            DefaultTabController(
-              length: 4,
-              child: Scaffold(
-                appBar: AppBar(
-                  automaticallyImplyLeading: false,
-                  backgroundColor: Color.fromRGBO(160, 134, 86, 1.0),
-                  title: TabBar(
-                    labelColor: Color.fromRGBO(0, 0, 0, 1.0),
-                    indicatorColor: Color.fromRGBO(0, 0, 0, 1.0),
-                    unselectedLabelColor: Color.fromRGBO(255, 255, 255, 1.0),
-                    tabs: [
-                      Tab(text: "NEW"),
-                      Tab(text: "커피"),
-                      Tab(text: "음료"),
-                      Tab(text: "차"),
-                    ],
-                  ),
-                ),
-                body: TabBarView(
-                  children: [
-                    MenuList(menus[0]), //MenuList 위젯 실행(menu_list.dart에 존재)
-                    MenuList(menus[1]),
-                    MenuList(menus[2]),
-                    MenuList(menus[3]),
-                  ],
-                ),
-              ),
-            ),
-            DefaultTabController(
-              length: 4,
-              child: Scaffold(
-                appBar: AppBar(
-                  automaticallyImplyLeading: false,
-                  backgroundColor: Color.fromRGBO(160, 134, 86, 1.0),
-                  title: TabBar(
-                    labelColor: Color.fromRGBO(0, 0, 0, 1.0),
-                    indicatorColor: Color.fromRGBO(0, 0, 0, 1.0),
-                    unselectedLabelColor: Color.fromRGBO(255, 255, 255, 1.0),
-                    tabs: [
-                      Tab(text: "NEW"),
-                      Tab(text: "베이커리"),
-                      Tab(text: "케이크"),
-                      Tab(text: "샌드위치"),
-                    ],
-                  ),
-                ),
-                body: TabBarView(
-                  children: [
-                    MenuList(menus[4]),
-                    MenuList(menus[5]),
-                    MenuList(menus[6]),
-                    MenuList(menus[7]),
-                  ],
-                ),
-              ),
-            ),
             DefaultTabController(
               length: 3,
               child: Scaffold(
@@ -152,21 +89,103 @@ class MenuPageState extends State<MenuPage> {
                     indicatorColor: Color.fromRGBO(0, 0, 0, 1.0),
                     unselectedLabelColor: Color.fromRGBO(255, 255, 255, 1.0),
                     tabs: [
-                      Tab(text: "원두커피"),
-                      Tab(text: "머그"),
-                      Tab(text: "텀블러"),
+                      Tab(text: "커피"),
+                      Tab(text: "음료"),
+                      Tab(text: "디저트"),
                     ],
                   ),
                 ),
                 body: TabBarView(
                   children: [
-                    MenuList(menus[8]),
-                    MenuList(menus[9]),
-                    MenuList(menus[10]),
+                    MenuList(menus[0]), //MenuList 위젯 실행(menu_list.dart에 존재)
+                    MenuList(menus[1]),
+                    MenuList(menus[2]),
                   ],
                 ),
               ),
             ),
+            // DefaultTabController(
+            //   length: 4,
+            //   child: Scaffold(
+            //     appBar: AppBar(
+            //       automaticallyImplyLeading: false,
+            //       backgroundColor: Color.fromRGBO(160, 134, 86, 1.0),
+            //       title: TabBar(
+            //         labelColor: Color.fromRGBO(0, 0, 0, 1.0),
+            //         indicatorColor: Color.fromRGBO(0, 0, 0, 1.0),
+            //         unselectedLabelColor: Color.fromRGBO(255, 255, 255, 1.0),
+            //         tabs: [
+            //           Tab(text: "NEW"),
+            //           Tab(text: "커피"),
+            //           Tab(text: "음료"),
+            //           Tab(text: "차"),
+            //         ],
+            //       ),
+            //     ),
+            //     body: TabBarView(
+            //       children: [
+            //         MenuList(menus[0]), //MenuList 위젯 실행(menu_list.dart에 존재)
+            //         MenuList(menus[1]),
+            //         MenuList(menus[2]),
+            //         MenuList(menus[3]),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // DefaultTabController(
+            //   length: 4,
+            //   child: Scaffold(
+            //     appBar: AppBar(
+            //       automaticallyImplyLeading: false,
+            //       backgroundColor: Color.fromRGBO(160, 134, 86, 1.0),
+            //       title: TabBar(
+            //         labelColor: Color.fromRGBO(0, 0, 0, 1.0),
+            //         indicatorColor: Color.fromRGBO(0, 0, 0, 1.0),
+            //         unselectedLabelColor: Color.fromRGBO(255, 255, 255, 1.0),
+            //         tabs: [
+            //           Tab(text: "NEW"),
+            //           Tab(text: "베이커리"),
+            //           Tab(text: "케이크"),
+            //           Tab(text: "샌드위치"),
+            //         ],
+            //       ),
+            //     ),
+            //     body: TabBarView(
+            //       children: [
+            //         MenuList(menus[4]),
+            //         MenuList(menus[5]),
+            //         MenuList(menus[6]),
+            //         MenuList(menus[7]),
+            //       ],
+            //     ),
+            //   ),
+            // ),
+            // DefaultTabController(
+            //   length: 3,
+            //   child: Scaffold(
+            //     appBar: AppBar(
+            //       automaticallyImplyLeading: false,
+            //       backgroundColor: Color.fromRGBO(160, 134, 86, 1.0),
+            //       title: TabBar(
+            //         labelColor: Color.fromRGBO(0, 0, 0, 1.0),
+            //         indicatorColor: Color.fromRGBO(0, 0, 0, 1.0),
+            //         unselectedLabelColor: Color.fromRGBO(255, 255, 255, 1.0),
+            //         tabs: [
+            //           Tab(text: "원두커피"),
+            //           Tab(text: "머그"),
+            //           Tab(text: "텀블러"),
+            //         ],
+            //       ),
+            //     ),
+            //     body: TabBarView(
+            //       children: [
+            //         MenuList(menus[8]),
+            //         MenuList(menus[9]),
+            //         MenuList(menus[10]),
+            //       ],
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

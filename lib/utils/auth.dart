@@ -1,6 +1,9 @@
+import 'package:wordpress_flutter/models/user_model.dart';
+
 enum AuthState { LOGGED_IN, LOGGED_OUT }
 
 abstract class AuthStateListener {
+  UserModel user;
   void onAuthStateChanged(AuthState state);
 }
 
@@ -17,11 +20,7 @@ class AuthStateProvider {
   }
 
   void initState() async {
-    var isLoggedIn = true;
-    if (isLoggedIn)
-      notify(AuthState.LOGGED_IN);
-    else
-      notify(AuthState.LOGGED_OUT);
+    notify(AuthState.LOGGED_OUT);
   }
 
   void subscribe(AuthStateListener listener) {
@@ -38,5 +37,20 @@ class AuthStateProvider {
     _subscribers.forEach((AuthStateListener s) {
       s.onAuthStateChanged(state);
     });
+  }
+
+  // void insertDetails(UserModel response) {
+  //   _subscribers.forEach((AuthStateListener s) {
+  //     s.user = response;
+  //   });
+  // }
+
+  AuthStateListener getListener() {
+    AuthStateListener listener;
+    _subscribers.forEach((AuthStateListener s) {
+      listener = s;
+    });
+    return listener;
+    // return null;
   }
 }

@@ -4,9 +4,29 @@ import 'package:wordpress_flutter/menu.dart';
 import 'package:wordpress_flutter/notice.dart';
 import 'package:wordpress_flutter/findStore.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:wordpress_flutter/review.dart';
 import 'package:wordpress_flutter/scan.dart';
+import 'package:wordpress_flutter/utils/auth.dart';
 
-class DropMenu extends StatelessWidget {
+class DropMenu extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    // TODO: implement createState
+    return DropMenuState();
+  }
+}
+
+class DropMenuState extends State<DropMenu> {
+  AuthStateListener s;
+  AuthStateProvider authStateProvider;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    authStateProvider = new AuthStateProvider();
+    this.s = authStateProvider.getListener();
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Drawer(
@@ -22,28 +42,31 @@ class DropMenu extends StatelessWidget {
               image: new AssetImage("assets/user.png"),
             ),
             accountName: new Text(
-              "더운날엔 아이스아메리카노 벌컥벌컥",
+              s.user != null ? s.user.user_display_name : "Guest",
               style: TextStyle(
                 color: Color.fromRGBO(0, 0, 0, 1.0),
               ),
             ),
             accountEmail: new Text(
-              "21500214@handong.edu",
+              s.user != null ? s.user.user_email : "로그인하여 주세요",
               style: TextStyle(
                 color: Color.fromRGBO(0, 0, 0, 1.0),
               ),
             ),
             otherAccountsPictures: <Widget>[
               new GestureDetector(
-                child: new CircleAvatar(
-                  backgroundImage: new AssetImage("assets/settings.png"),
-                  backgroundColor: new Color.fromRGBO(229, 229, 229, 1.0),
-                ),
+                child: s.user != null ? Text("로그\n아웃") : Text("로그인"),
+                // child: new CircleAvatar(
+                //   backgroundImage: s.user != null ? new AssetImage("assets/settings.png") : new AssetImage("assets/settings.png"),
+                //   backgroundColor: new Color.fromRGBO(229, 229, 229, 1.0),
+                // ),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                  );
+                  if (s.user != null) {
+                    authStateProvider.dispose(s);
+                    Navigator.of(context).pushReplacementNamed('/login');
+                  } else {
+                    Navigator.of(context).pushReplacementNamed('/login');
+                  }
                 },
               ),
             ],
@@ -142,9 +165,18 @@ class DropMenu extends StatelessWidget {
               "assets/coupon.png",
               height: 30.0,
             ),
-            title: new Text("Coupon"),
+            title: new Text("Review"),
             onTap: () {
-              _showAlert(context);
+              if (s.user == null) {
+                _showAlert(context);
+              } else {
+                Navigator.pop(context);
+
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ReviewPage()),
+                );
+              }
             },
           ),
           new ListTile(
@@ -195,7 +227,7 @@ class DropMenu extends StatelessWidget {
 
 //connected link
 _launchURL() async {
-  const url = 'http://dnjemvmfptm1.dothome.co.kr';
+  const url = 'http://wordpresscafe.dothome.co.kr';
   if (await canLaunch(url)) {
     await launch(url);
   } else {
@@ -207,7 +239,7 @@ _launchURL() async {
 _showAlert(BuildContext context) {
   AlertDialog dialog = new AlertDialog(
     content: new Text(
-      "아직 준비 중인 서비스입니다.",
+      "회원전용 기능입니다. 로그인하여 주세요.",
       style: new TextStyle(
         fontSize: 15.0,
       ),

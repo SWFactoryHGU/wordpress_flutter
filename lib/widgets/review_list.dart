@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 
@@ -8,19 +7,19 @@ import '../notice_detail.dart';
 
 import 'package:http/http.dart' show get;
 
-class NoticeList extends StatefulWidget {
+class ReviewList extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return NoticeListState();
+    return ReviewListState();
   }
 }
 
-class NoticeListState extends State<NoticeList> {
+class ReviewListState extends State<ReviewList> {
   List<PostModel> notices = [];
 
   void fetchNotice() async {
     final response = await get(
-      'http://wordpresscafe.dothome.co.kr/wp-json/wp/v2/posts?_embed&categories=25',
+      'http://wordpresscafe.dothome.co.kr/wp-json/wp/v2/posts?_embed&categories=29',
       // headers: {HttpHeaders.authorizationHeader: "Basic your_api_token_here",},
     );
 
