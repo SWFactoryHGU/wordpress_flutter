@@ -65,6 +65,7 @@ class DropMenuState extends State<DropMenu> {
                     authStateProvider.dispose(s);
                     Navigator.of(context).pushReplacementNamed('/login');
                   } else {
+                    authStateProvider.dispose(s);
                     Navigator.of(context).pushReplacementNamed('/login');
                   }
                 },

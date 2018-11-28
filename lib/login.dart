@@ -215,8 +215,6 @@ class LoginPageState extends State<LoginPage> implements AuthStateListener {
                       ),
                     ),
                     onPressed: () {
-                      var authStateProvider = new AuthStateProvider();
-                      authStateProvider.dispose(this);
                       Navigator.of(_ctx).pushReplacementNamed('/home');
                     },
                   ),
