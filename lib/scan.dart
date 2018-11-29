@@ -178,7 +178,7 @@ class DetailScreenState extends State<DetailScreen> {
                 ),
               ),
               Text(
-                'QR code로 리뷰 쓰기',
+                'QR code로 메뉴 확인하기',
                 style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30.0),
               ),
               Container(
